@@ -20,8 +20,18 @@
     <%= f.text_area :explanation %>
   </div>
   <div class="field">
+    <% if @project.image? %>
+      <%= image_tag @project.image.url %>
+    <% end %>
     <%= f.label :image %><br>
-    <%= f.text_field :image %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+  <div class="field">
+    <% if @project.persisted? && @project.image %>
+      <%= f.check_box :remove_image %>
+      画像を削除
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :wanted %><br>
