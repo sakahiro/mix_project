@@ -1,0 +1,27 @@
+<p>
+  <strong>name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>school:</strong>
+  <%= @user.school %>
+</p>
+
+<p>
+  <strong>age:</strong>
+  <%= @user.age %>
+</p>
+
+<p>
+  <strong>pr:</strong>
+  <%= @user.pr %>
+</p>
+
+<p>
+  <strong>avatar:</strong>
+  <%= image_tag @user.avatar.url %>
+</p>
+
+<%= link_to 'Edit', edit_user_profile_path(@user) %> |
+<%= link_to 'Back', user_profiles_path %>
