@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :roles
   has_many :projects, through: :roles
-  has_many :projects, through: :comments
+  has_many :comments
 
   validates :age, 	allow_blank: true,
   									numericality: { only_integer: true, less_than: 30 }

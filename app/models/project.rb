@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
 	has_many :comments, dependent: :destroy
 	has_many :roles, dependent: :destroy
 	has_many :user, through: :roles
-	has_many :user, through: :comments
+	has_many :comments
 
 	validates :title, 	presence: true
 	validates :explanation, presence: true,
