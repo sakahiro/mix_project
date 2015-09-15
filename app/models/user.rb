@@ -8,8 +8,9 @@ class User < ActiveRecord::Base
 
   has_one :engineer, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :roles, dependent: :destroy
-  has_many :projects, through: [:comments, :roles], dependent: :destroy
+  has_many :roles
+  has_many :projects, through: :roles
+  has_many :projects, through: :comments
 
   validates :age, 	allow_blank: true,
   									numericality: { only_integer: true, less_than: 30 }

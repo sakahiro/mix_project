@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <% if @user.avatar? %>
-      <%= image_tag @user.avatar.url %>
+      <%= image_tag @user.avatar.url, height: 100 %>
     <% end %>
     <%= f.label :avatar %><br>
     <%= f.file_field :avatar %>

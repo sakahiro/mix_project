@@ -1,9 +1,10 @@
 class Project < ActiveRecord::Base
 	mount_uploader :image, ImageUploader
 
-	has_many :comments
-	has_many :roles
-	has_many :user, through: [:comments, :roles]
+	has_many :comments, dependent: :destroy
+	has_many :roles, dependent: :destroy
+	has_many :user, through: :roles
+	has_many :user, through: :comments
 
 	validates :title, 	presence: true
 	validates :explanation, presence: true,
