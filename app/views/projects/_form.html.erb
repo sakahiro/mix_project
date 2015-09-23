@@ -45,6 +45,7 @@
     <%= f.label :done %><br>
     <%= f.check_box :done %>
   </div>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <div class="actions">
     <%= f.submit %>
   </div>

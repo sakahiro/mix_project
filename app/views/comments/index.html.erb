@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    コメント一覧
+	</thead>
+
+  <tbody>
+    <% if @comments.present? %>
+	  	<% @comments.each do |comment| %>
+	    	<tr>
+	    		<td>
+	    			<%= comment.content %>
+	    		</td>
+	    	</tr>
+	  	<% end %>
+	  <% else %>
+	  <tr><td>まだ投稿はありません</td></tr>
+	  <% end %>
+	 </tbody>
+</table>

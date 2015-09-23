@@ -11,18 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915065826) do
+ActiveRecord::Schema.define(version: 20150916131147) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content",    limit: 255, null: false
+    t.integer  "user_id",    limit: 4,   null: false
+    t.integer  "project_id", limit: 4,   null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "product_id", limit: 4
-    t.integer  "user_id",    limit: 4
   end
 
   create_table "engineers", force: :cascade do |t|
-    t.integer  "history",    limit: 4,   null: false
     t.string   "product",    limit: 255, null: false
     t.integer  "user_id",    limit: 4,   null: false
     t.datetime "created_at",             null: false
@@ -40,10 +39,18 @@ ActiveRecord::Schema.define(version: 20150915065826) do
     t.datetime "updated_at",                              null: false
   end
 
+  create_table "projects_users", id: false, force: :cascade do |t|
+    t.integer "project_id", limit: 4
+    t.integer "user_id",    limit: 4
+  end
+
+  add_index "projects_users", ["project_id"], name: "index_projects_users_on_project_id", using: :btree
+  add_index "projects_users", ["user_id"], name: "index_projects_users_on_user_id", using: :btree
+
   create_table "roles", force: :cascade do |t|
     t.string   "role_name",  limit: 255, null: false
     t.integer  "user_id",    limit: 4,   null: false
-    t.integer  "product_id", limit: 4,   null: false
+    t.integer  "project_id", limit: 4,   null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -64,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150915065826) do
     t.integer  "age",                    limit: 4
     t.text     "pr",                     limit: 255
     t.string   "avatar",                 limit: 255
+    t.integer  "history",                limit: 4
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
   end

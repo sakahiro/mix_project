@@ -1,12 +1,9 @@
 class CommentsController < ApplicationController
-	before_action :set_comment
-
-	def new
-		@comment = Comment.new
-	end
+	before_action :set_comment, only: [:edit, :update, :destroy]
 
 	def create
-		@comment = Comment.new(comment_params)
+		@user = User.find(current_user)
+		@comment = @user.comments.new(comment_params)
 
 		if @comment.save
 			redirect_to project_path(@comment.project), notice: "コメントしました"
@@ -19,10 +16,16 @@ class CommentsController < ApplicationController
 	end
 
 	def update
-
+		if @comment.update(comment_params)
+			redirect_to project_path(@commetn.project), notice: "コメントを修正しました"
+		else
+			render :edit
+		end
 	end
 
-	def delete
+	def destroy
+		@comment.destroy
+		redirect_to projects_path, notice: 'コメントを削除しました'
 	end
 
 	private
@@ -32,6 +35,6 @@ class CommentsController < ApplicationController
 	end
 
 	def comment_params
-		params.require(:comment).permit(:contents)
+		params.require(:comment).permit(:content, :project_id)
 	end
 end

@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :user_profiles
   resources :engineers
   resources :projects
+  resources :comments
   root to: "projects#index"
 end

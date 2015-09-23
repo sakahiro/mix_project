@@ -3,8 +3,7 @@ class Project < ActiveRecord::Base
 
 	has_many :comments, dependent: :destroy
 	has_many :roles, dependent: :destroy
-	has_many :user, through: :roles
-	has_many :comments
+	has_and_belongs_to_many :users
 
 	validates :title, 	presence: true
 	validates :explanation, presence: true,

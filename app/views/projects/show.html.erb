@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
-
+<p>
+  <%= @project.users.name %>
 <p>
   <strong>Title:</strong>
   <%= @project.title %>
@@ -29,6 +30,11 @@
   <strong>Done:</strong>
   <%= @project.done %>
 </p>
+
+<%= render template: "comments/new" %>
+
+
+<%= render template: "comments/index" %>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

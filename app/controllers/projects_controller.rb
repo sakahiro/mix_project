@@ -10,6 +10,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @comments = @project.comments.all
+    @comment = Comment.new
   end
 
   # GET /projects/new
@@ -24,10 +26,12 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
-
+    @user = current_user
+    @project = @user.projects.build(project_params)
+    binding.pry
     respond_to do |format|
       if @project.save
+        @user.projects << @project
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
