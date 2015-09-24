@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>tag</th>
       <th>Explanation</th>
       <th>Image</th>
       <th>Wanted</th>
@@ -19,6 +20,7 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.title %></td>
+        <td><%= project.type_list %></td>
         <td><%= project.explanation %></td>
         <td><%= image_tag project.image.url, height: 100 %></td>
         <td><%= project.wanted %></td>

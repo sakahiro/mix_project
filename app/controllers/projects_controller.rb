@@ -28,7 +28,6 @@ class ProjectsController < ApplicationController
   def create
     @user = current_user
     @project = @user.projects.build(project_params)
-    binding.pry
     respond_to do |format|
       if @project.save
         @user.projects << @project
@@ -73,6 +72,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:title, :explanation, :image, :cache_image, :wanted, :doing, :done)
+      params.require(:project).permit(:title, :explanation, :image, :cache_image, :wanted, :doing, :done, :type_list)
     end
 end

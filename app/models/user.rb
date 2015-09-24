@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   has_many :engineers, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :roles
-  has_and_belongs_to_many :projects
+  has_many :projects_users
+  has_many :projects, through: :projects_users
 
   validates :name, presence: true, on: :update
   validates :school, presence: true, on: :update

@@ -1,9 +1,12 @@
 class Project < ActiveRecord::Base
 	mount_uploader :image, ImageUploader
 
+	acts_as_taggable_on :types
+
 	has_many :comments, dependent: :destroy
 	has_many :roles, dependent: :destroy
-	has_and_belongs_to_many :users
+	has_many :projects_users
+	has_many :users, through: :projects_users
 
 	validates :title, 	presence: true
 	validates :explanation, presence: true,
