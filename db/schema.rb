@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923132523) do
+ActiveRecord::Schema.define(version: 20150924062606) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content",    limit: 255, null: false
@@ -22,7 +22,9 @@ ActiveRecord::Schema.define(version: 20150923132523) do
   end
 
   create_table "engineers", force: :cascade do |t|
-    t.string   "product",    limit: 255, null: false
+    t.integer  "history",    limit: 4,   null: false
+    t.string   "product1",   limit: 255
+    t.string   "product2",   limit: 255
     t.integer  "user_id",    limit: 4,   null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -90,7 +92,6 @@ ActiveRecord::Schema.define(version: 20150923132523) do
     t.integer  "age",                    limit: 4
     t.text     "pr",                     limit: 255
     t.string   "avatar",                 limit: 255
-    t.integer  "history",                limit: 4
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
   end
