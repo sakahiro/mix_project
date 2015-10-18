@@ -14,14 +14,13 @@ class UserProfilesController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @engineer = @user.engineers.new
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params) && @user.engineers.create(product)
+      if @user.update(user_params)
         format.html { redirect_to user_profile_path(@user), notice: 'user was successfully updated.' }
         format.json { render :show, status: :ok, location: user_profile_path(@user) }
       else
@@ -50,9 +49,5 @@ class UserProfilesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :school, :age, :pr, :avatar, :avatar_cache, :remove_avatar, :history)
-    end
-
-    def product
-      params.require(:engineer).permit(:product)
     end
 end

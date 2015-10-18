@@ -28,7 +28,7 @@ class EngineersController < ApplicationController
     @engineer = @user.build_engineer(engineer_params)
 
     respond_to do |format|
-      if @engineer.save
+      if @user.engineer.save
         format.html { redirect_to @engineer, notice: 'engineer was successfully created.' }
         format.json { render :show, status: :created, location: @engineer }
       else
@@ -70,6 +70,6 @@ class EngineersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def engineer_params
-      params.require(:engineer).permit(:history, :product, :user_id)
+      params.require(:engineer).permit(:history, :product1, :product2, :language_list)
     end
 end

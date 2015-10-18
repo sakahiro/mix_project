@@ -12,8 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :product %><br>
-    <%= f.text_field :product %>
+    <%= f.label :history %><br>
+    <%= f.number_field :history %>
+  </div>
+
+  <div class="field">
+    <%= f.label :language_list %><br />
+    <%= f.text_field :language_list %>
+  </div>
+
+  <div class="field">
+    <%= f.label :product1 %><br>
+    <%= f.text_field :product1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :product2 %><br>
+    <%= f.text_field :product2 %>
   </div>
   <div class="actions">
     <%= f.submit %>
