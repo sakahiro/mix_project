@@ -12,6 +12,8 @@ class ProjectsController < ApplicationController
   def show
     @comments = @project.comments.all
     @comment = Comment.new
+
+    @role = Role.new
   end
 
   # GET /projects/new
@@ -64,10 +66,24 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def role_create
+    @user= current_user
+    @role = @user.role.build(role_params)
+    if @role.save
+      redirect_to @project
+    else
+      render :show
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:id])
+      if params[:id].nil?
+        @project = Project.find(params[:comment][:project_id])
+      else
+        @project = Project.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
