@@ -3,6 +3,10 @@ class Role < ActiveRecord::Base
 	belongs_to :project
 
 	validates :role_name, presence: true
+	validates :project_id, uniqueness: {
+		message: "すでに参加しています",
+		scope: [:user_id]
+	}
 	after_create :connect_user_and_project
 	after_destroy :disconnect_user_and_project
 

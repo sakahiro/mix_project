@@ -6,9 +6,9 @@ class CommentsController < ApplicationController
 		@comment = @user.comments.new(comment_params)
 
 		if @comment.save
-			redirect_to project_path(@comment.project), notice: "コメントしました"
+			redirect_to project_path(@commetn.project), notice: "コメントを修正しました"
 		else
-			render :new
+			redirect_to controller: "shares", action: "fail", id: 1
 		end
 	end
 
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
 		if @comment.update(comment_params)
 			redirect_to project_path(@commetn.project), notice: "コメントを修正しました"
 		else
-			render :edit
+			redirect_to controller: "shares", action: "fail", id: 2
 		end
 	end
 
