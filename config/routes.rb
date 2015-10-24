@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :engineers
   resources :projects
   resources :comments
+  resources :roles
   get "fail/:id", to: "shares#fail"
   root to: "projects#index"
 end
